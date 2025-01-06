@@ -182,7 +182,7 @@ class Configuration
      */
     public function __construct()
     {
-        $this->tempFolderPath = sys_get_temp_dir();
+        $this->tempFolderPath = \sys_get_temp_dir();
     }
 
     /**
@@ -316,7 +316,7 @@ class Configuration
      */
     public function addDefaultHeader($headerName, $headerValue)
     {
-        if (!is_string($headerName)) {
+        if (!\is_string($headerName)) {
             throw new \InvalidArgumentException('Header name must be a string.');
         }
 
@@ -380,7 +380,7 @@ class Configuration
      */
     public function setUserAgent($userAgent)
     {
-        if (!is_string($userAgent)) {
+        if (!\is_string($userAgent)) {
             throw new \InvalidArgumentException('User-agent must be a string.');
         }
 
@@ -407,7 +407,7 @@ class Configuration
      */
     public function setCurlTimeout($seconds)
     {
-        if (!is_numeric($seconds) || $seconds < 0) {
+        if (!\is_numeric($seconds) || $seconds < 0) {
             throw new \InvalidArgumentException('Timeout value must be numeric and a non-negative number.');
         }
 
@@ -434,7 +434,7 @@ class Configuration
      */
     public function setCurlConnectTimeout($seconds)
     {
-        if (!is_numeric($seconds) || $seconds < 0) {
+        if (!\is_numeric($seconds) || $seconds < 0) {
             throw new \InvalidArgumentException('Connect timeout value must be numeric and a non-negative number.');
         }
 
@@ -685,8 +685,8 @@ class Configuration
     public static function toDebugReport()
     {
         $report  = 'PHP SDK (idcheckio) Debug Report:' . PHP_EOL;
-        $report .= '    OS: ' . php_uname() . PHP_EOL;
-        $report .= '    PHP Version: ' . phpversion() . PHP_EOL;
+        $report .= '    OS: ' . \php_uname() . PHP_EOL;
+        $report .= '    PHP Version: ' . \phpversion() . PHP_EOL;
         $report .= '    OpenAPI Spec Version: 0.0' . PHP_EOL;
         $report .= '    SDK Package Version: 1.0.0' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
